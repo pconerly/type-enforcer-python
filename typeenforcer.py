@@ -10,21 +10,21 @@ class typeEnforcer(object):
             if len(self.typeTuple) != len(args):
             	raise Exception("Expected type is not the same length as *args")
             for a, t in zip(args, self.typeTuple):
-            	if type(a) != type(t):
+            	if type(a) != t:
             		raise Exception("%s is type %s, not expected type %s" % (a, type(a), t) )
             return f(*args)
         return wrapped_f
 
-@typeEnforcer(int())
+@typeEnforcer(int)
 def xequalsxplusone(x):
 	return x + 1
 
-@typeEnforcer(int(), int())
+@typeEnforcer(int, int)
 def addition(a, b):
 	return a + b
 
 
-@typeEnforcer(str(), int())
+@typeEnforcer(str, int)
 def stringmultiplication(string, multiplier):
 	result = ""
 	for i in range(multiplier):
