@@ -1,11 +1,10 @@
-
+#!/usr/bin/env python
 
 class typeEnforcer(object):
     def __init__(self, *args):
         self.typeTuple = args
 
     def __call__(self, f):
-
         def wrapped_f(*args):
             if len(self.typeTuple) != len(args):
             	raise Exception("Expected type is not the same length as *args")
@@ -15,6 +14,7 @@ class typeEnforcer(object):
             return f(*args)
         return wrapped_f
 
+
 @typeEnforcer(int)
 def xequalsxplusone(x):
 	return x + 1
@@ -22,7 +22,6 @@ def xequalsxplusone(x):
 @typeEnforcer(int, int)
 def addition(a, b):
 	return a + b
-
 
 @typeEnforcer(str, int)
 def stringmultiplication(string, multiplier):
